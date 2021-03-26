@@ -1,59 +1,80 @@
+//Métodos restaurante//
+const calcularGorjeta = function() {
+    console.log('this conta = ', this.conta);
+    if (this.conta < 50) {
+        this.gorjeta = this.conta * 0.20; 
+    } else if (this.conta >= 50 && this.conta < 200) {
+        this.gorjeta = this.conta * 0.15;
+    } else {
+        this.gorjeta = this.conta * 0.10;
+    }
+    console.log('this gorjeta = ', this.gorjeta);
+    return this.gorjeta;
+}
+///////////////////////////
+
 //Pegando a quantidade de restaurantes//
-let v;
+let valorQuantidadeRestaurantes;
 let flag = false;
+
 do {
-    v = prompt(`Informer a quantidade de restaurantes visitados:`);
-    if (parseInt(v)) {
-        v = parseInt(v);
+    valorQuantidadeRestaurantes = prompt(`Informer a quantidade de restaurantes visitados:`);
+    if (parseInt(valorQuantidadeRestaurantes)) {
+        valorQuantidadeRestaurantes = parseInt(valorQuantidadeRestaurantes);
         flag = true;
     } else {
         console.log('Informe a quantidade novamente!!');        
     }
 } while (flag != true);
-const quantidade = v;
+
+const quantidadeRestaurantes = valorQuantidadeRestaurantes;
 ///////////////////////////
 
-//Pegando dados do restaurante//
-let r = {};
-
+//Pegando dados do restaurante, calculando gorjeta e total//
 const restaurantes = new Array();
 
-for (let i = 0; i < quantidade; i++) {
-    let nome;
+for (let i = 0; i < quantidadeRestaurantes; i++) { 
+    const restaurante = {
+        calcularGorjeta,
+    };
+
+    let valorConta;
+    let nomeRestaurante;
     
     flag = false;
     do {
-        nome = prompt(`Informe o nome do ${i+1}º restaurante:`);
-        if (nome) {
-            console.log(`${nome}: nome não null`);
+        nomeRestaurante = prompt(`Informe o nome do ${i+1}º restaurante:`);
+        if (nomeRestaurante) {
+            restaurante.nome = nomeRestaurante;
+            console.log(`${restaurante.nome}: nome não null`);
             flag = true;
         } else {
             console.log(`Informe o nome do ${i+1}º restaurante novamente:`);
         }
-    } while (flag != true);
-    
-    let valor;
+    } while (flag != true); 
     
     flag = false;
     do {
-        valor = prompt(`Informe o valor do restaurante (${nome}):`);
-        if (parseFloat(valor)) {
-            valor = parseFloat(valor);
-            console.log(`${valor}: valor válido`);
+        valorConta = prompt(`Informe o valor do restaurante (${restaurante.nome}):`);
+        if (parseFloat(valorConta)) {
+            restaurante.conta = parseFloat(valorConta);
+            restaurante.calcularGorjeta();
             flag = true;
         } else {
-            console.log(`Informe o valor do restaurante (${nome}) novamente:`);
+            console.log(`Informe o valor do restaurante (${restaurante.nome}) novamente:`);
         }
     } while (flag != true);
 
-    r.nome = nome;
-    r.valor = valor;
-    
-    console.log("saida r = ", r);
-    restaurantes[i] = r;
+    restaurantes[i] = restaurante;
 }
 
 for (const res of restaurantes) {
-    console.log(res);
+    console.log('------------------------------');
+    console.log("saida restaurantes uhlala!! = ", res);
+    console.log('------------------------------');
 }
+///////////////////////////
+
+///
+
 ///////////////////////////

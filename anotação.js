@@ -9,10 +9,10 @@
 
 // - Individualmente para cada restaurante, peça para o usuário informar o nome
 //e o valor da conta, armazene estes dados em um objeto 
-//e insira o objeto em um Array de restaurantes.
+//e insira o objeto em um Array de restaurantes. = OK
 
 // - Cada objeto deve conter um método para calcular a gorjeta, que, 
-//além de calcular e retornar, também armazena o valor calculado junto ao objeto original.
+//além de calcular e retornar, também armazena o valor calculado junto ao objeto original. = OK
 
 // - Cada objeto deve conter um método para calcular o valor total (conta + gorjeta).
 
