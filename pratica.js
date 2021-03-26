@@ -14,11 +14,10 @@ const quantidade = v;
 ///////////////////////////
 
 //Pegando dados do restaurante//
-let restaurante = {};
+let r = {};
 
-let restaurantes = new Array;
+const restaurantes = new Array();
 
-// flag = false;
 for (let i = 0; i < quantidade; i++) {
     let nome;
     
@@ -27,7 +26,6 @@ for (let i = 0; i < quantidade; i++) {
         nome = prompt(`Informe o nome do ${i+1}º restaurante:`);
         if (nome) {
             console.log(`${nome}: nome não null`);
-            restaurante.nome = nome;
             flag = true;
         } else {
             console.log(`Informe o nome do ${i+1}º restaurante novamente:`);
@@ -42,15 +40,17 @@ for (let i = 0; i < quantidade; i++) {
         if (parseFloat(valor)) {
             valor = parseFloat(valor);
             console.log(`${valor}: valor válido`);
-            restaurante.valor = valor;
             flag = true;
         } else {
             console.log(`Informe o valor do restaurante (${nome}) novamente:`);
         }
     } while (flag != true);
 
-    console.log(restaurante);
-    // restaurantes.push(restaurante);
+    r.nome = nome;
+    r.valor = valor;
+    
+    console.log("saida r = ", r);
+    restaurantes[i] = r;
 }
 
 for (const res of restaurantes) {
