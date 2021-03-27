@@ -1,6 +1,5 @@
 //Métodos restaurante//
 const calcularGorjeta = function() {
-    console.log('this conta = ', this.conta);
     if (this.conta < 50) {
         this.gorjeta = this.conta * 0.20; 
     } else if (this.conta >= 50 && this.conta < 200) {
@@ -8,9 +7,26 @@ const calcularGorjeta = function() {
     } else {
         this.gorjeta = this.conta * 0.10;
     }
-    console.log('this gorjeta = ', this.gorjeta);
-    return this.gorjeta;
+    // return this.gorjeta;
 }
+
+const calcularTotal = function() { return this.conta + this.gorjeta; }
+
+const toString = function() { return `${this.nome} - [Valor: R$ ${this.conta} | Gorjeta: R$ ${this.gorjeta} | Total: R$ ${this.calcularTotal()}]`; }
+///////////////////////////
+
+//Métodos restaurantes//
+const gastoTotal = function(){
+    let total = 'feijão';
+    // for (let restaurante of this) {
+    //     total += restaurante.calcularTotal();
+    // }
+    return total;
+}
+
+// const gastoTotal = function() {
+//     return this.calcularTotal();
+// };
 ///////////////////////////
 
 //Pegando a quantidade de restaurantes//
@@ -36,6 +52,8 @@ const restaurantes = new Array();
 for (let i = 0; i < quantidadeRestaurantes; i++) { 
     const restaurante = {
         calcularGorjeta,
+        calcularTotal,
+        toString,
     };
 
     let valorConta;
@@ -46,7 +64,6 @@ for (let i = 0; i < quantidadeRestaurantes; i++) {
         nomeRestaurante = prompt(`Informe o nome do ${i+1}º restaurante:`);
         if (nomeRestaurante) {
             restaurante.nome = nomeRestaurante;
-            console.log(`${restaurante.nome}: nome não null`);
             flag = true;
         } else {
             console.log(`Informe o nome do ${i+1}º restaurante novamente:`);
@@ -55,24 +72,26 @@ for (let i = 0; i < quantidadeRestaurantes; i++) {
     
     flag = false;
     do {
-        valorConta = prompt(`Informe o valor do restaurante (${restaurante.nome}):`);
+        valorConta = prompt(`Informe o valor da conta do restaurante (${restaurante.nome}):`);
         if (parseFloat(valorConta)) {
             restaurante.conta = parseFloat(valorConta);
-            restaurante.calcularGorjeta();
+            restaurante.calcularGorjeta();            
             flag = true;
         } else {
-            console.log(`Informe o valor do restaurante (${restaurante.nome}) novamente:`);
+            console.log(`Informe o valor da conta do restaurante (${restaurante.nome}) novamente:`);
         }
     } while (flag != true);
 
     restaurantes[i] = restaurante;
 }
 
-for (const res of restaurantes) {
-    console.log('------------------------------');
-    console.log("saida restaurantes uhlala!! = ", res);
-    console.log('------------------------------');
-}
+restaurantes[quantidadeRestaurantes] = {gastoTotal};
+console.log(restaurantes);
+console.log(restaurantes.gastoTotal);
+
+// for (const res of restaurantes) {
+//     console.log(restaurantes.gastoTotal());
+// }
 ///////////////////////////
 
 ///

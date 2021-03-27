@@ -14,11 +14,11 @@
 // - Cada objeto deve conter um método para calcular a gorjeta, que, 
 //além de calcular e retornar, também armazena o valor calculado junto ao objeto original. = OK
 
-// - Cada objeto deve conter um método para calcular o valor total (conta + gorjeta).
+// - Cada objeto deve conter um método para calcular o valor total (conta + gorjeta). = OK
 
 // - Cada objeto deve conter um método "toString()", 
 //que retorna uma String no seguinte formato: 
-//"Restaurante do Zé Birola - [Valor: R$ 60.00 | Gorjeta: R$ 9.00 | Total: R$ 69.00]"
+//"Restaurante do Zé Birola - [Valor: R$ 60.00 | Gorjeta: R$ 9.00 | Total: R$ 69.00]" = OK
 
 // - Adicione um método ao Array para calcular o total gasto.
 
