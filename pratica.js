@@ -7,7 +7,7 @@ const calcularGorjeta = function() {
     } else {
         this.gorjeta = this.conta * 0.10;
     }
-    // return this.gorjeta;
+    return this.gorjeta;
 }
 
 const calcularTotal = function() { return this.conta + this.gorjeta; }
@@ -17,16 +17,44 @@ const toString = function() { return `${this.nome} - [Valor: R$ ${this.conta} | 
 
 //Métodos restaurantes//
 const gastoTotal = function(){
-    let total = 'feijão';
-    // for (let restaurante of this) {
-    //     total += restaurante.calcularTotal();
-    // }
+    let total = 0;
+    for (let restaurante of this) {
+        total += restaurante.calcularTotal();
+    }
     return total;
 }
 
-// const gastoTotal = function() {
-//     return this.calcularTotal();
-// };
+const medidaGastoTotal = function(){
+    let media = 0;
+    for (let restaurante of this) {
+        media += restaurante.calcularTotal();
+    }
+    media /= quantidadeRestaurantes
+    return media;
+}
+
+const maiorGastoTotal = function(){
+    let maior = 0;
+    let saida;
+    for (let restaurante of this) {
+        if (restaurante.calcularTotal() > maior) {
+            saida = restaurante;
+            maior = restaurante.calcularTotal();
+        }
+    }
+    return saida;
+}
+
+const imprimeDetalhes = function(){ 
+    console.log(`Restaurantes visitados no feriado: ${quantidadeRestaurantes}`);
+    console.log(`Lista de gastos:`);
+    for (let restaurante of this) {
+        console.log(`   ${restaurante.toString()}`);
+    }
+    console.log(`Total gasto: ${this.gastoTotal()}`);
+    console.log(`Média de gastos: R$ ${this.mediaGastoTotal()}`);
+    console.log(`Restaurante com maior gasto total: ${this.maiorGastoTotal().nome} (R$ ${this.maiorGastoTotal().conta})`);
+}
 ///////////////////////////
 
 //Pegando a quantidade de restaurantes//
@@ -34,7 +62,7 @@ let valorQuantidadeRestaurantes;
 let flag = false;
 
 do {
-    valorQuantidadeRestaurantes = prompt(`Informer a quantidade de restaurantes visitados:`);
+    valorQuantidadeRestaurantes = prompt(`Informe a quantidade de restaurantes visitados:`);
     if (parseInt(valorQuantidadeRestaurantes)) {
         valorQuantidadeRestaurantes = parseInt(valorQuantidadeRestaurantes);
         flag = true;
@@ -82,18 +110,15 @@ for (let i = 0; i < quantidadeRestaurantes; i++) {
         }
     } while (flag != true);
 
-    restaurantes[i] = restaurante;
+    restaurantes[i] = restaurante; 
 }
-
-restaurantes[quantidadeRestaurantes] = {gastoTotal};
-console.log(restaurantes);
-console.log(restaurantes.gastoTotal);
-
-// for (const res of restaurantes) {
-//     console.log(restaurantes.gastoTotal());
-// }
 ///////////////////////////
 
-///
-
+//Adicionanado métodos ao Array e mostrando os dados//
+restaurantes.gastoTotal = gastoTotal;
+restaurantes.mediaGastoTotal = medidaGastoTotal;
+restaurantes.maiorGastoTotal = maiorGastoTotal;
+restaurantes.imprimeDetalhes = imprimeDetalhes;
+    
+restaurantes.imprimeDetalhes();
 ///////////////////////////
